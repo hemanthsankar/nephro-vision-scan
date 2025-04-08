@@ -9,9 +9,9 @@ const Scan = () => {
     <MainLayout>
       <div className="nephro-container py-12">
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h1 className="text-3xl font-bold mb-4">Upload Kidney Scan</h1>
+          <h1 className="text-3xl font-bold mb-4">Upload & Analyze Kidney Scan</h1>
           <p className="text-gray-600">
-            Upload your kidney scan images for AI-powered tumor detection and analysis. 
+            Upload your kidney scan images for instant AI-powered tumor detection and analysis. 
             Our system works with standard medical imaging formats.
           </p>
         </div>
@@ -27,14 +27,9 @@ const Scan = () => {
             <li>• Remove any personal identifiers from the images before uploading</li>
           </ul>
           
-          <div className="flex justify-between">
-            <Button variant="outline" asChild>
-              <Link to="/">Back to Home</Link>
-            </Button>
-            <Button asChild className="bg-nephro-primary hover:bg-nephro-primary/90">
-              <Link to="/results">View Previous Results</Link>
-            </Button>
-          </div>
+          <Button variant="outline" asChild>
+            <Link to="/">Back to Home</Link>
+          </Button>
         </div>
       </div>
     </MainLayout>
