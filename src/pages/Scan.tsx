@@ -19,13 +19,13 @@ const Scan = () => {
         <ScanUploader />
         
         <div className="mt-12 bg-gray-50 p-6 rounded-lg max-w-3xl mx-auto">
-          <h3 className="text-xl font-semibold mb-3">Guidelines for Best Results</h3>
-          <ul className="space-y-2 text-gray-600 mb-6">
-            <li>• Use high-resolution kidney scans for more accurate detection</li>
-            <li>• Ensure images are properly oriented and clearly show the entire kidney</li>
-            <li>• DICOM format is preferred, but high-quality JPG/PNG is acceptable</li>
-            <li>• Remove any personal identifiers from the images before uploading</li>
-          </ul>
+          <h3 className="text-xl font-semibold mb-3">Instructions for Best Results</h3>
+          <ol className="space-y-2 text-gray-600 mb-6 list-decimal pl-5">
+            <li>Use high-resolution kidney scans for more accurate detection</li>
+            <li>Ensure images are properly oriented and clearly show the entire kidney</li>
+            <li>DICOM format is preferred, but high-quality JPG/PNG is acceptable</li>
+            <li>Remove any personal identifiers from the images before uploading</li>
+          </ol>
           
           <Button variant="outline" asChild>
             <Link to="/">Back to Home</Link>
