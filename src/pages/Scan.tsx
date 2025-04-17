@@ -25,6 +25,12 @@ const Scan = () => {
             <li>Ensure images are properly oriented and clearly show the entire kidney</li>
             <li>DICOM format is preferred, but high-quality JPG/PNG is acceptable</li>
             <li>Remove any personal identifiers from the images before uploading</li>
+            <li>Aim for images with a clear contrast between kidney tissue and surrounding structures</li>
+            <li>Avoid scans with excessive noise, artifacts, or low image quality</li>
+            <li>Provide multiple views or angles of the kidney if possible</li>
+            <li>Ensure the scan is from a reputable medical imaging source</li>
+            <li>Check that the image resolution is at least 300 DPI for detailed analysis</li>
+            <li>Verify that the scan metadata is intact and readable</li>
           </ol>
           
           <Button variant="outline" asChild>
@@ -37,3 +43,4 @@ const Scan = () => {
 };
 
 export default Scan;
+
