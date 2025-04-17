@@ -3,6 +3,33 @@ import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
+const teamMembers = [
+  {
+    name: "Dr. Jane Smith",
+    role: "Chief Medical Officer",
+    bio: "Nephrology specialist with 15+ years of experience in kidney disease diagnostics.",
+    image: "/team-member-1.jpg"
+  },
+  {
+    name: "Dr. Mark Johnson",
+    role: "Director of AI Research",
+    bio: "Leading AI researcher focused on medical imaging applications for over a decade.",
+    image: "/team-member-2.jpg"
+  },
+  {
+    name: "Sarah Williams",
+    role: "Head of Product",
+    bio: "Healthcare technology expert specializing in user-centered medical software design.",
+    image: "/team-member-3.jpg"
+  },
+  {
+    name: "Dr. Robert Chen",
+    role: "Clinical Specialist",
+    bio: "Board-certified radiologist with expertise in kidney tumor identification and treatment.",
+    image: "/team-member-4.jpg"
+  }
+];
+
 const About = () => {
   return (
     <MainLayout>
@@ -33,9 +60,9 @@ const About = () => {
           <div className="relative">
             <div className="absolute -inset-4 bg-nephro-primary/5 rounded-xl -z-10"></div>
             <img 
-              src="/placeholder.svg" 
+              src="/medical-team.jpg" 
               alt="Medical team" 
-              className="rounded-lg shadow-md"
+              className="rounded-lg shadow-md w-full h-auto"
             />
           </div>
         </div>
@@ -44,13 +71,19 @@ const About = () => {
           <h2 className="text-2xl font-bold mb-8 text-center">Team 18 Leadership</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {Array.from({ length: 4 }).map((_, index) => (
+            {teamMembers.map((member, index) => (
               <div key={index} className="text-center">
-                <div className="bg-gray-200 w-32 h-32 rounded-full mx-auto mb-4"></div>
-                <h3 className="font-semibold text-nephro-primary">Dr. Jane Smith</h3>
-                <p className="text-sm text-gray-500">Chief Medical Officer</p>
+                <div className="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="font-semibold text-nephro-primary">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.role}</p>
                 <p className="text-sm mt-2">
-                  Nephrology specialist with 15+ years of experience in kidney disease diagnostics.
+                  {member.bio}
                 </p>
               </div>
             ))}

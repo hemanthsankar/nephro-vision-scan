@@ -46,7 +46,7 @@ const ResultsViewer = () => {
             <div className="md:w-1/2">
               <div className="relative bg-gray-100 rounded-lg overflow-hidden h-72 md:h-96">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/kidney-scan-result.jpg" 
                   alt="Kidney scan with detection overlay"
                   className="w-full h-full object-cover"
                 />

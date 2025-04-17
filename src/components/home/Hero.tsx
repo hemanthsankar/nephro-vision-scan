@@ -28,7 +28,7 @@ const Hero = () => {
             <div className="absolute -inset-4 bg-nephro-primary/5 rounded-xl -z-10"></div>
             <div className="relative bg-white p-4 rounded-lg shadow-lg">
               <img 
-                src="/placeholder.svg" 
+                src="/kidney-scan.jpg" 
                 alt="Kidney Scan Visualization"
                 className="w-full h-auto rounded"
               />

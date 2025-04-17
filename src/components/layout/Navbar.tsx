@@ -8,9 +8,11 @@ const Navbar = () => {
       <div className="nephro-container py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="bg-nephro-primary rounded-full w-8 h-8 flex items-center justify-center">
-              <span className="text-white font-bold">N</span>
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Nephrotec Logo" 
+              className="w-10 h-10 object-contain"
+            />
             <span className="text-nephro-primary font-bold text-xl">Nephrotec</span>
             <span className="text-xs text-nephro-secondary bg-nephro-light px-2 py-1 rounded-full">Team 18</span>
           </Link>

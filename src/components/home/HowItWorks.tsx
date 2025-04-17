@@ -3,22 +3,26 @@ const steps = [
   {
     number: "01",
     title: "Upload Scan",
-    description: "Upload kidney CT or MRI scans in standard DICOM or common image formats."
+    description: "Upload kidney CT or MRI scans in standard DICOM or common image formats.",
+    image: "/upload-scan.jpg"
   },
   {
     number: "02",
     title: "AI Processing",
-    description: "Our advanced algorithms analyze the scans to detect anomalies and potential tumors."
+    description: "Our advanced algorithms analyze the scans to detect anomalies and potential tumors.",
+    image: "/ai-processing.jpg"
   },
   {
     number: "03",
     title: "Review Results",
-    description: "Get detailed analysis with visual markers highlighting areas of concern."
+    description: "Get detailed analysis with visual markers highlighting areas of concern.",
+    image: "/review-results.jpg"
   },
   {
     number: "04",
     title: "Expert Confirmation",
-    description: "Share results with medical professionals for confirmation and treatment planning."
+    description: "Share results with medical professionals for confirmation and treatment planning.",
+    image: "/expert-confirmation.jpg"
   }
 ];
 
@@ -44,8 +48,15 @@ const HowItWorks = () => {
               >
                 <div className="md:w-1/2 flex justify-center">
                   <div className="relative">
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 h-64 flex items-center justify-center">
-                      <span className="text-8xl font-bold text-nephro-light">{step.number}</span>
+                    <div className="bg-white p-4 rounded-lg shadow-md w-64 h-64 flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={step.image} 
+                        alt={step.title} 
+                        className="w-full h-full object-cover"
+                      />
+                      <span className="absolute bottom-2 right-2 text-5xl font-bold text-white bg-nephro-primary/70 w-12 h-12 flex items-center justify-center rounded-full">
+                        {step.number.slice(-1)}
+                      </span>
                     </div>
                     <div className="absolute -z-10 inset-0 bg-nephro-primary/10 rounded-lg transform rotate-3"></div>
                   </div>
