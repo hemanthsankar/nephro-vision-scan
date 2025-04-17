@@ -1,17 +1,20 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import logoImage from "/logo.png";
 
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="nephro-container py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="bg-nephro-primary rounded-full w-8 h-8 flex items-center justify-center">
-              <span className="text-white font-bold">N</span>
-            </div>
-            <span className="text-nephro-primary font-bold text-xl">Nephrotec</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img 
+              src={logoImage} 
+              alt="NephroTec Logo" 
+              className="h-10 w-10 object-contain"
+            />
+            <span className="text-nephro-primary font-bold text-xl">NephroTec</span>
             <span className="text-xs text-nephro-secondary bg-nephro-light px-2 py-1 rounded-full">Team 18</span>
           </Link>
           
