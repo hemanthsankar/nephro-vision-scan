@@ -8,20 +8,29 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Circle, Heart, HeartCrack } from "lucide-react";
 
-// Mock result data (in a real app, this would come from an API)
-const mockResults = {
-  patientId: "PT-89275",
-  scanDate: new Date().toISOString().split('T')[0],
-  tumorDetected: true,
-  confidence: 92,
-  tumorType: "Renal Cell Carcinoma",
-  tumorSize: "2.4 cm",
-  location: "Right kidney, lower pole",
-  recommendations: [
-    "Further evaluation with contrast-enhanced MRI",
-    "Consultation with urologic oncologist",
-    "Consider biopsy for histological confirmation"
-  ]
+// Function to generate random analysis results
+const generateRandomResults = () => {
+  // Random determination if tumor is detected (70% chance of tumor, 30% chance of no tumor)
+  const tumorDetected = Math.random() > 0.3;
+  
+  return {
+    patientId: "PT-" + Math.floor(10000 + Math.random() * 90000),
+    scanDate: new Date().toISOString().split('T')[0],
+    tumorDetected,
+    confidence: Math.floor(85 + Math.random() * 10),
+    tumorType: tumorDetected ? "Renal Cell Carcinoma" : "N/A",
+    tumorSize: tumorDetected ? `${(1 + Math.random() * 3).toFixed(1)} cm` : "N/A",
+    location: tumorDetected ? "Right kidney, lower pole" : "N/A",
+    recommendations: tumorDetected ? [
+      "Further evaluation with contrast-enhanced MRI",
+      "Consultation with urologic oncologist",
+      "Consider biopsy for histological confirmation"
+    ] : [
+      "Regular follow-up in 12 months",
+      "Maintain healthy kidney function with proper hydration",
+      "Continue monitoring any symptoms"
+    ]
+  };
 };
 
 const ScanUploader = () => {
@@ -30,6 +39,7 @@ const ScanUploader = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState(generateRandomResults());
   const { toast } = useToast();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +79,9 @@ const ScanUploader = () => {
 
     setIsUploading(true);
     setAnalysisProgress(0);
+    
+    // Generate random results before showing them
+    setAnalysisResults(generateRandomResults());
     
     // Simulate analysis process with progress
     const interval = setInterval(() => {
@@ -197,7 +210,7 @@ const ScanUploader = () => {
                     alt="Kidney scan with detection overlay"
                     className="w-full h-full object-cover"
                   />
-                  {mockResults.tumorDetected && (
+                  {analysisResults.tumorDetected && (
                     <div 
                       className="absolute top-1/3 left-1/2 h-12 w-12 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-red-500 animate-pulse"
                       style={{ backgroundColor: 'rgba(239, 68, 68, 0.3)' }}
@@ -228,8 +241,8 @@ const ScanUploader = () => {
                   
                   <TabsContent value="summary" className="space-y-4">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={mockResults.tumorDetected ? "bg-red-100 p-2 rounded-full" : "bg-green-100 p-2 rounded-full"}>
-                        {mockResults.tumorDetected ? (
+                      <div className={analysisResults.tumorDetected ? "bg-red-100 p-2 rounded-full" : "bg-green-100 p-2 rounded-full"}>
+                        {analysisResults.tumorDetected ? (
                           <HeartCrack className="h-6 w-6 text-red-500" />
                         ) : (
                           <Heart className="h-6 w-6 text-green-500" />
@@ -237,12 +250,12 @@ const ScanUploader = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold">
-                          {mockResults.tumorDetected 
+                          {analysisResults.tumorDetected 
                             ? "Tumor Detected" 
                             : "No Tumor Detected"}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          Confidence: {mockResults.confidence}%
+                          Confidence: {analysisResults.confidence}%
                         </p>
                       </div>
                     </div>
@@ -250,19 +263,19 @@ const ScanUploader = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gray-50 p-3 rounded-md">
                         <p className="text-sm text-gray-500">Patient ID</p>
-                        <p className="font-medium">{mockResults.patientId}</p>
+                        <p className="font-medium">{analysisResults.patientId}</p>
                       </div>
                       <div className="bg-gray-50 p-3 rounded-md">
                         <p className="text-sm text-gray-500">Scan Date</p>
-                        <p className="font-medium">{mockResults.scanDate}</p>
+                        <p className="font-medium">{analysisResults.scanDate}</p>
                       </div>
                       <div className="bg-gray-50 p-3 rounded-md">
                         <p className="text-sm text-gray-500">Tumor Type</p>
-                        <p className="font-medium">{mockResults.tumorType}</p>
+                        <p className="font-medium">{analysisResults.tumorType}</p>
                       </div>
                       <div className="bg-gray-50 p-3 rounded-md">
                         <p className="text-sm text-gray-500">Size</p>
-                        <p className="font-medium">{mockResults.tumorSize}</p>
+                        <p className="font-medium">{analysisResults.tumorSize}</p>
                       </div>
                     </div>
                     
@@ -277,16 +290,27 @@ const ScanUploader = () => {
                     <div className="space-y-4">
                       <div>
                         <h4 className="text-sm font-medium text-gray-500">Location</h4>
-                        <p className="font-medium">{mockResults.location}</p>
+                        <p className="font-medium">{analysisResults.location}</p>
                       </div>
                       
                       <div>
                         <h4 className="text-sm font-medium text-gray-500">Characteristics</h4>
                         <ul className="list-disc pl-5 space-y-1 mt-2">
-                          <li>Well-defined margins</li>
-                          <li>Heterogeneous enhancement</li>
-                          <li>No evidence of local invasion</li>
-                          <li>No lymph node involvement detected</li>
+                          {analysisResults.tumorDetected ? (
+                            <>
+                              <li>Well-defined margins</li>
+                              <li>Heterogeneous enhancement</li>
+                              <li>No evidence of local invasion</li>
+                              <li>No lymph node involvement detected</li>
+                            </>
+                          ) : (
+                            <>
+                              <li>Normal kidney tissue appearance</li>
+                              <li>No suspicious masses or lesions</li>
+                              <li>Normal cortical thickness</li>
+                              <li>No hydronephrosis or stones detected</li>
+                            </>
+                          )}
                         </ul>
                       </div>
                       
@@ -303,7 +327,7 @@ const ScanUploader = () => {
                     <div className="space-y-4">
                       <h4 className="font-medium">Recommended Next Steps</h4>
                       <ul className="space-y-3">
-                        {mockResults.recommendations.map((rec, index) => (
+                        {analysisResults.recommendations.map((rec, index) => (
                           <li key={index} className="flex items-start gap-2">
                             <Circle className="h-5 w-5 text-nephro-primary shrink-0 mt-0.5" />
                             <span>{rec}</span>
