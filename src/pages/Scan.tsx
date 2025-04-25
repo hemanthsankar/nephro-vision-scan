@@ -1,6 +1,7 @@
 
 import MainLayout from "@/components/layout/MainLayout";
 import ScanUploader from "@/components/scan/ScanUploader";
+import ScanNotifications from "@/components/scan/ScanNotifications";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const Scan = () => {
           </p>
         </div>
         
+        <ScanNotifications />
         <ScanUploader />
         
         <div className="mt-12 bg-gray-50 p-6 rounded-lg max-w-3xl mx-auto">
@@ -43,4 +45,3 @@ const Scan = () => {
 };
 
 export default Scan;
-
